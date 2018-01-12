@@ -133,7 +133,7 @@
  			<div class="form-group">
             <label class="col-sm-2 control-label" for="input-total"><?php echo $entry_module; ?></label>
               <div class="col-sm-10">
-                  <select name="pumcp_module"id="input-status" class="form-control">
+                  <select name="pumcp_module" id="pumcp_module" class="form-control">
                     <?php $cm=explode('|',$entry_module_id);foreach($cm as $m){?>
                     <?php if ($pumcp_module == $m) { ?>
                     <option value="<?php echo $m; ?>" selected><?php echo $m; ?></option>

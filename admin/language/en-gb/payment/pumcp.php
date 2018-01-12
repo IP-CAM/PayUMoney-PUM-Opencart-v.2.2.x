@@ -10,7 +10,7 @@ $_['text_pumcp']      		= '<a onclick="window.open(\'https://www.payumoney.com\'
 
 //General Settings
 $_['entry_route']    		= 'Route Traffic (%):';
-$_['entry_route_payu']  	= 'PayU Money';
+$_['entry_route_payu']  	= 'PayUmoney';
 $_['entry_route_citrus'] 	= 'Citrus Pay';
 $_['help_route'] 			= '% of total transactions to route to each gateway. This option will come into effect only if both PayU Money and Citrus are configured.';
 

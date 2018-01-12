@@ -146,7 +146,7 @@ class ControllerPaymentPumcp extends Controller
 		 /////////////////////////////////////Start Payu Vital  Information /////////////////////////////////
 		
 		if($this->config->get('pumcp_module')=='Sandbox')
-			$data['action'] = 'https://test.payu.in/_payment.php';
+			$data['action'] = 'https://sandboxsecure.payu.in/_payment.php';
 		else
 		    $data['action'] = 'https://secure.payu.in/_payment.php';
 			
@@ -180,8 +180,10 @@ class ControllerPaymentPumcp extends Controller
 	    $firstname    = $order_info['payment_firstname'];
 		$email        = $order_info['email'];
 		$salt         = $this->config->get('pumcp_payu_salt');
-		$Hash=hash('sha512', $key.'|'.$txnid.'|'.$amount.'|'.$productInfo.'|'.$firstname.'|'.$email.'|||||||||||'.$salt); 
-		$data['user_credentials'] = $this->data['key'].':'.$this->data['email'];
+		$udf5 		  = "Opencart_v_2.2";
+		$Hash=hash('sha512', $key.'|'.$txnid.'|'.$amount.'|'.$productInfo.'|'.$firstname.'|'.$email.'|||||'.$udf5.'||||||'.$salt); 
+		$data['user_credentials'] = $data['key'].':'.$data['email'];
+		$data['udf5'] = $udf5;
 		$data['Hash'] = $Hash;
 		$service_provider = 'payu_paisa';
 		$data['service_provider'] = $service_provider;
@@ -225,7 +227,8 @@ class ControllerPaymentPumcp extends Controller
 				$email        		=	$this->request->post['email'];
 				$salt        		= 	$this->config->get('pumcp_payu_salt');
 				$txnid		 		=   $this->request->post['txnid'];
-				$keyString 	  		=  	$key.'|'.$txnid.'|'.$amount.'|'.$productInfo.'|'.$firstname.'|'.$email.'||||||||||';
+				$udf5		 		=   $this->request->post['udf5'];
+				$keyString 	  		=  	$key.'|'.$txnid.'|'.$amount.'|'.$productInfo.'|'.$firstname.'|'.$email.'|||||'.$udf5.'|||||';
 				$keyArray 	  		= 	explode("|",$keyString);
 				$reverseKeyArray 	= 	array_reverse($keyArray);
 				$reverseKeyString	=	implode("|",$reverseKeyArray);

@@ -130,7 +130,13 @@
 			} else {
 				$data['pumcp_currency'] = $this->config->get('pumcp_currency'); 
 			} 
-				
+			
+			if (isset($this->request->post['pumcp_module'])) {
+				$data['pumcp_module'] = $this->request->post['pumcp_module'];
+			} else {
+				$data['pumcp_module'] = $this->config->get('pumcp_module');
+			}
+			
 			if (isset($this->request->post['pumcp_order_status_id'])) {
 				$data['pumcp_order_status_id'] = $this->request->post['pumcp_order_status_id'];
 			} else {
